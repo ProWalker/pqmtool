@@ -5,13 +5,13 @@ namespace Nik\Classes;
 /**
  * Basic class for question
  */
-class Question {
+abstract class Question {
     // Basic constants
     const MULTICHOICE_TYPE = "multichoice";
     const SHORT_TYPE = "shortquestion";
 
     // This is text of question
-    protected $text = "";
+    protected String $text = "";
 
     // Right answers for the question
     protected array $answers = [];
@@ -21,10 +21,7 @@ class Question {
         $this->text = $text;
     }
 
-    function setAnswers(array $answers)
-    {
-        $this->answers = $answers;
-    }
+    abstract function setAnswers(String $answers);
 
     function getAnswers(): array
     {

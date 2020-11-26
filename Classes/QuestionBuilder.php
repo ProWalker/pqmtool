@@ -18,7 +18,7 @@ abstract class QuestionBuilder
     }
 
     // Basic interface
-    abstract function makeQuestion(array $questionData): Question;
+    abstract function makeQuestion(): Question;
 
     protected function getQuestionData(): array
     {
@@ -32,13 +32,21 @@ abstract class QuestionBuilder
 
     protected function validation()
     {
-        $data = getQuestionData();
+        $data = $this->getQuestionData();
         if (count($data) == 0) {
             throw new \Exception("Error: Missing data for the question.");
         }
-        $answer = getQuestionAnswer();
+        $answer = $this->getQuestionAnswer();
         if (strlen($answer) == 0) {
             throw new \Exception("Error: Missing answer for the question.");
         }
+    }
+
+    abstract function isAnswerValid(String $answer): bool;
+
+    function reset()
+    {
+        $this->data = [];
+        $this->answer = "";
     }
 }
