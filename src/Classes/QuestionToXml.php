@@ -1,6 +1,6 @@
 <?php
 
-namespace Nik\Classes;
+namespace PQMTool\Classes;
 
 /**
  * Subjects needs to return xml representation for moodle question

@@ -1,10 +1,10 @@
 <?php
 
-namespace Nik\Lib;
+namespace PQMTool\Lib;
 
-use Nik\Classes\Question;
-use Nik\Classes\MultichoiceQuestion;
-use Nik\Classes\Exceptions;
+use PQMTool\Classes\Question;
+use PQMTool\Classes\MultichoiceQuestion;
+use PQMTool\Classes\Exceptions\FileNotExistException;
 
 /**
  * Usefull functions for parsing questions
@@ -19,14 +19,14 @@ function parseFileToArray($file): array
     return explode("\n", $file);
 }
 
-function parseQuestions(array $file): array
+function parseQuestions(array $col): array
 {
     $questions = [];
-    $typeOfQuestions = [Question::MULTICHOICE_TYPE, Question::SHORT_TYPE];
+    $typeOfQuestions = getQuestionTypes();
     // Default question type
-    $type = Question::MULTICHOICE_TYPE;
+    $type = 'multichoice';
     $questionData = ['data' => [], 'answer' => '']; 
-    foreach ($file as $line)
+    foreach ($col as $line)
     {
         if (empty($line)) {
             continue;
@@ -53,13 +53,13 @@ function parseQuestions(array $file): array
 // Unused
 function createQuestion(String $type): Question
 {
-    $question = 'Nik\Classes\\' . ucfirst($type) . 'Question';
+    $question = 'PQMTool\Classes\\' . ucfirst($type) . 'Question';
     return new $question;
 }
 
 function createQuestionBuilder(String $type, array $questionData)
 {
-    $builder = 'Nik\Classes\\' . ucfirst($type) . 'QuestionBuilder';
+    $builder = 'PQMTool\Classes\\' . ucfirst($type) . 'QuestionBuilder';
     return new $builder($questionData['data'], $questionData['answer']);
 }
 
@@ -72,4 +72,10 @@ function parseAnswer(String $line): String
 {
     $answer = explode(':', $line)[1];
     return trim($answer);
+}
+
+function getQuestionTypes(): array
+{
+    $types = array('multichoice', 'shortanswer');
+    return $types;
 }

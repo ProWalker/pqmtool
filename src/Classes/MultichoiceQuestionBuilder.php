@@ -1,8 +1,8 @@
 <?php
 
-namespace Nik\Classes;
+namespace PQMTool\Classes;
 
-use Nik\Classes\Exceptions;
+use PQMTool\Classes\Exceptions;
 
 class MultichoiceQuestionBuilder extends QuestionBuilder
 {

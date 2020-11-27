@@ -1,14 +1,13 @@
 <?php
 
-namespace Nik\Classes;
+namespace PQMTool\Classes;
 
 /**
  * Basic class for question
  */
 abstract class Question {
-    // Basic constants
-    const MULTICHOICE_TYPE = "multichoice";
-    const SHORT_TYPE = "shortquestion";
+    // Type of question
+    protected String $type = "basic";
 
     // This is text of question
     protected String $text = "";
@@ -31,6 +30,11 @@ abstract class Question {
     function getText(): String
     {
         return $this->text;
+    }
+
+    function getType(): String
+    {
+        return $this->type;
     }
 
 }

@@ -5,7 +5,7 @@
  * to speified form.
  */
 
-namespace Nik\Classes;
+namespace PQMTool\Classes;
 
 class QuestionPrinter
 {

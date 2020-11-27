@@ -4,7 +4,7 @@
  * Basic class for build question
  */
 
-namespace Nik\Classes;
+namespace PQMTool\Classes;
 
 abstract class QuestionBuilder
 {

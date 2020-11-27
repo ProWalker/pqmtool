@@ -1,6 +1,6 @@
 <?php
 
-namespace Nik\Classes\Exceptions;
+namespace PQMTool\Classes\Exceptions;
 
 class QuestionFormatException extends \Exception
 {

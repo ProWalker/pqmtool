@@ -1,8 +1,8 @@
 <?php
 
-namespace Nik\Classes;
+namespace PQMTool\Classes;
 
-use Nik\Classes\Exceptions\QuestionFormatException;
+use PQMTool\Classes\Exceptions\QuestionFormatException;
 
 /**
  * Multichoice quiestion
@@ -10,6 +10,8 @@ use Nik\Classes\Exceptions\QuestionFormatException;
  */
 class MultichoiceQuestion extends Question
 {
+    protected String $type = "multichoice";
+
     // Variants of answer for the question
     protected array $answerVariants = [];
 

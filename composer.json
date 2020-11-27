@@ -1,11 +1,27 @@
 {
-    "name": "nik/moodle-xml-parser",
-    "description": "Mini app for parsing questions to moodle xml format",
+    "name": "pqmtool/pqmtool",
+    "description": "Tiny library for parsing questions to moodle xml format",
     "authors": [
         {
             "name": "Nikita Maksimov",
             "email": "provoker.1986@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "PQMTool\\": "src"
+        },
+        "files": [
+            "src/Lib/parse.php"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PQMTool\\": "tests"
+        }
+    }
 }
