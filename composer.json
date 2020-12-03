@@ -1,13 +1,15 @@
 {
-    "name": "pqmtool/pqmtool",
-    "description": "Tiny library for parsing questions to moodle xml format",
+    "name": "provoker1986/pqmtool",
+    "description": "Tiny tool for parsing questions to moodle xml format",
     "authors": [
         {
             "name": "Nikita Maksimov",
             "email": "provoker.1986@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=7.4.3"
+    },
     "autoload": {
         "psr-4": {
             "PQMTool\\": "src"
