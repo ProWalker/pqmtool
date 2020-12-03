@@ -79,3 +79,9 @@ function getQuestionTypes(): array
     $types = array('multichoice', 'shortanswer');
     return $types;
 }
+
+function stringIsEmpty(String $str): bool
+{
+    $str = trim($str);
+    return isset($str) === true && $str === '';
+}

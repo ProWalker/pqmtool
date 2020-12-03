@@ -24,16 +24,4 @@ class MultichoiceQuestion extends Question
     {
         return $this->answerVariants;
     }
-
-    function setAnswers(String $answers)
-    {
-        $answers = str_replace(' ', '', $answers);
-        $answers = array_map(fn($index) => $index - 1, explode(",", $answers));
-        $this->answers = $answers;
-        $variantsKeys = array_keys($this->getAnswerVariants());
-        $diff = array_diff($answers, $variantsKeys);
-        if (count($diff) > 0) {
-            throw new QuestionFormatException("Error: Answer contains number that is not in range numbers of variants.");
-        }
-    }
 }

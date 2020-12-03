@@ -2,7 +2,7 @@
 
 namespace PQMTool\Classes;
 
-include __DIR__ . '/../Lib/parse.php';
+// include __DIR__ . '/../Lib/parse.php';
 
 use function PQMTool\Lib\getQuestionTypes;
 use function PQMTool\Lib\isAnswer;
@@ -23,9 +23,11 @@ class PQMTool
             if (empty($line)) {
                 continue;
             }
+            $line = trim($line);
             // If this type of question
             if (in_array(strtolower($line), $typeOfQuestions)) {
                 $type = $line;
+                continue;
             }
             if (!isAnswer($line)) {
                 $questionData['data'][] = $line;

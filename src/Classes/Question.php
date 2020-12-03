@@ -2,10 +2,13 @@
 
 namespace PQMTool\Classes;
 
+use PQMTool\Classes\Exceptions\QuestionFormatException;
+
 /**
- * Basic class for question
+ * Basic class for question. This is abstraction for a question.
+ * All work for validation data takes place in question builders.
  */
-abstract class Question {
+class Question {
     // Type of question
     protected String $type = "basic";
 
@@ -17,10 +20,16 @@ abstract class Question {
 
     function setText(String $text)
     {
+        if ($text == "") {
+            throw new QuestionFormatException("The text must not be empty line");
+        }
         $this->text = $text;
     }
 
-    abstract function setAnswers(String $answers);
+    function setAnswers(array $answers)
+    {
+        $this->answers = $answers;
+    }
 
     function getAnswers(): array
     {
