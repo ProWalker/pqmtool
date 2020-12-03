@@ -1,6 +1,7 @@
 {
     "name": "pqmtool/pqmtool",
     "description": "Tiny tool for parsing questions to moodle xml format",
+    "keywords": ["moodle"],
     "authors": [
         {
             "name": "Nikita Maksimov",
