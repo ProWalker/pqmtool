@@ -24,13 +24,13 @@ class MultichoiceQuestionBuilder extends QuestionBuilder
             throw new QuestionFormatException("Error: Answer is not valid.");
         }
         $answer = array_unique(explode(",", $answer));
-        sort($answer);
         $answer = array_map(fn($index) => $index - 1, $answer);
-        $variantsKeys = array_keys($answer);
+        $variantsKeys = array_keys($question->getAnswerVariants());
         $diff = array_diff($answer, $variantsKeys);
         if (count($diff) > 0) {
             throw new QuestionFormatException("Error: Answer contains number that is not in range numbers of variants.");
         }
+        sort($answer);
         $question->setAnswers($answer);
         return $question;
     }

@@ -24,7 +24,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "PQMTool\\": "tests"
+            "PQMTool\\": "Tests"
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }

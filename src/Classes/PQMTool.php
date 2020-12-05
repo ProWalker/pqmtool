@@ -8,6 +8,7 @@ use function PQMTool\Lib\getQuestionTypes;
 use function PQMTool\Lib\isAnswer;
 use function PQMTool\Lib\parseAnswer;
 use function PQMTool\Lib\createQuestionBuilder;
+use PQMTool\Classes\MultichoiceQuestionXmlPrinter;
 
 class PQMTool
 {
@@ -42,5 +43,22 @@ class PQMTool
             }
         }
         return $questions;
+    }
+
+    function questionsToXml(array $questions): String
+    {
+        $xw = new \XMLWriter();
+        $xw->openMemory();
+        $xw->startDocument("1.0");
+        $xw->writeComment("Generated with pqmtool");
+        $xw->startElement("quiz");
+        foreach ($questions as $number => $question) {
+            $printer = new MultichoiceQuestionXmlPrinter($question, $number);
+            $xw->writeRaw($printer->output());
+        }
+        $xw->endElement();
+        $xw->writeComment("Generated with pqmtool");
+        $xw->endDocument();
+        return $xw->outputMemory();
     }
 }

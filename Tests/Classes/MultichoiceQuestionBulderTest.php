@@ -16,13 +16,15 @@ class MultichoiceQuestionBuilderTest extends TestCase
         $data = [
             "Question 1",
             "Variant 1",
-            "Variant 2"
+            "Variant 2",
+            "Variant 3"
         ];
         $builder = new MultichoiceQuestionBuilder($data, $stringAnswer);
         $question = new MultichoiceQuestion();
         $question->setText("Question 1");
         $question->setAnswerVariant("Variant 1");
         $question->setAnswerVariant("Variant 2");
+        $question->setAnswerVariant("Variant 3");
         $question->setAnswers($expectedAnswer);
 
         $this->assertEquals($question, $builder->makeQuestion());
