@@ -19,37 +19,6 @@ function parseFileToArray($file): array
     return explode("\n", $file);
 }
 
-function parseQuestions(array $col): array
-{
-    $questions = [];
-    $typeOfQuestions = getQuestionTypes();
-    // Default question type
-    $type = 'multichoice';
-    $questionData = ['data' => [], 'answer' => '']; 
-    foreach ($col as $line)
-    {
-        if (empty($line)) {
-            continue;
-        }
-        // If this type of question
-        if (in_array(strtolower($line), $typeOfQuestions)) {
-            $type = $line;
-        }
-        if (!isAnswer($line)) {
-            $questionData['data'][] = $line;
-        } else {
-            $answer = parseAnswer($line);
-            $questionData['answer'] = $answer;
-            $builder = createQuestionBuilder($type, $questionData);
-            $questions[] = $builder->makeQuestion();
-            $builder->reset();
-            $questionData['data'] = [];
-            $questionData['answer'] = '';
-        }
-    }
-    return $questions;
-}
-
 // Unused
 function createQuestion(String $type): Question
 {
