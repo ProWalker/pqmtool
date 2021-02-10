@@ -1,0 +1,10 @@
+Какие теги используются для определения заголовков?
+h1-h6
+Header
+Heading
+hr
+Answer: 1
+
+shortanswer
+HTML-tag for drawing with JavaScript.
+Answer: Canvas

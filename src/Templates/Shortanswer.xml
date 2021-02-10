@@ -1,0 +1,21 @@
+<question type="shortanswer">
+    <name>
+        <text><![CDATA[__Question {{ questionNum }}]]></text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[{{ questionText }}]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <usecase>0</usecase>
+    {% for answer in answers %}
+    <answer fraction="100" format="moodle_auto_format">
+      <text>{{ answer }}</text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    {% endfor %}
+</question>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!--Generated with pqmtool-->
+<quiz>
+    <question type="category">
+        <category>
+            <text>__{{ questionCategory }}__</text>
+        </category>
+    </question>
+</quiz>

@@ -8,8 +8,13 @@
             "email": "provoker.1986@gmail.com"
         }
     ],
+    "bin": [
+        "bin/pqmtool"
+    ],
     "require": {
-        "php": ">=7.4.3"
+        "php": ">=7.4.3",
+        "twig/twig": "^3.0",
+        "php-di/php-di": "^6.3"
     },
     "autoload": {
         "psr-4": {

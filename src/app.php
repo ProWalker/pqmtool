@@ -6,27 +6,32 @@
 
 namespace PQMTool;
 
-require __DIR__ . '/autoload.php';
-require __DIR__ . '/Lib/parse.php';
+//require __DIR__ . '/autoload.php';
+//require __DIR__ . '/Lib/parse.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-use function PQMTool\Lib\parseQuestions;
-use function PQMTool\Lib\parseFileToArray;
 use PQMTool\Classes\PQMTool;
 use PQMTool\Classes\MultichoiceQuestion;
 use PQMTool\Classes\MultichoiceQuestionXmlPrinter;
+use PQMTool\Classes\ShortanswerQuestion;
+use PQMTool\Classes\ShortanswerQuestionXmlPrinter;
+use function PQMTool\Lib\parseFileToArray;
 
-$loader = new Psr4AutoloaderClass();
-$loader->register();
+define("TEMPLATES_PATH", __DIR__ . '/Templates');
 
-$textFile = $argv[1];
+// $loader = new Psr4AutoloaderClass();
+// $loader->register();
 
-$tool = new PQMTool();
+ $inputFile = $argv[1];
+ $outputFile = $argv[2];
 
-$fileToArray = parseFileToArray($textFile);
-$questions = $tool->parseQuestions($fileToArray);
+ $tool = new PQMTool();
 
-$toXml = $tool->questionsToXml($questions);
-print_r($toXml);
+ $fileToArray = parseFileToArray($inputFile);
+ $questions = $tool->parseQuestions($fileToArray);
+
+ $toXml = $tool->questionsToXml($questions);
+ file_put_contents($outputFile, $toXml);
 
 // print_r($questions);
 
@@ -39,3 +44,10 @@ print_r($toXml);
 
 // $printer = new MultichoiceQuestionXmlPrinter($question);
 // print_r($printer->output());
+
+//$question = new ShortanswerQuestion();
+//$question->setText("Question 1");
+//$question->setAnswers(["Answer"]);
+//
+//$printer = new ShortanswerQuestionXmlPrinter($question);
+//print_r($printer->output());

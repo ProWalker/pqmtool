@@ -2,13 +2,10 @@
 
 namespace PQMTool\Classes;
 
-// include __DIR__ . '/../Lib/parse.php';
-
 use function PQMTool\Lib\getQuestionTypes;
 use function PQMTool\Lib\isAnswer;
 use function PQMTool\Lib\parseAnswer;
 use function PQMTool\Lib\createQuestionBuilder;
-use PQMTool\Classes\MultichoiceQuestionXmlPrinter;
 
 class PQMTool
 {
@@ -52,8 +49,20 @@ class PQMTool
         $xw->startDocument("1.0");
         $xw->writeComment("Generated with pqmtool");
         $xw->startElement("quiz");
+        $xw->startElement("question");
+        $xw->writeAttribute("type", "category");
+        $xw->startElement("category");
+        $xw->startElement("text");
+        $xw->text("__Default category__");
+        $xw->endElement(); // End text element
+        $xw->endElement(); // End category element
+        $xw->endElement(); // End question element
         foreach ($questions as $number => $question) {
-            $printer = new MultichoiceQuestionXmlPrinter($question, $number);
+            if ($question instanceof MultichoiceQuestion) {
+                $printer = new MultichoiceQuestionXmlPrinter($question, $number);
+            } else {
+                $printer = new ShortanswerQuestionXmlPrinter($question, $number);
+            }
             $xw->writeRaw($printer->output());
         }
         $xw->endElement();
