@@ -1,17 +1,20 @@
-<!--Question entry {{ questionNum }}-->
-<question type="{{ questionType }}">
-    <name>
-        <text><![CDATA[__Question {{ questionNum }}]]></text>
-    </name>
-    <questiontext format="html">
-        <text><![CDATA[{{ questionText }}]]></text>
-    </questiontext>
-    {% for key, variant in answersVariants %}
-    <answer fraction="{{ {{ key }} in {{ answers }} ? {{ fraction }} : 0 }}">
-        <text><![CDATA[{{ variant }}]]></text>
-    </answer>
-    {% endfor %}
-    <shuffleanswers>0</shuffleanswers>
-    <single>false</single>
-    <answernumbering>123</answernumbering>
-</question>
+    <!--Question entry {{ questionNum }}-->
+    <question type="{{ questionType }}">
+        <name>
+            <text><![CDATA[__Question {{ questionNum }}]]></text>
+        </name>
+        <questiontext format="html">
+            <text><![CDATA[{{ questionText }}]]></text>
+        </questiontext>
+        {% for key, variant in answersVariants %}
+        {%- if key not in answers %}
+            {%- set fraction = 0 -%}
+        {% endif -%}
+        <answer fraction="{{ fraction }}">
+            <text><![CDATA[{{ variant }}]]></text>
+        </answer>
+        {% endfor %}
+        <shuffleanswers>0</shuffleanswers>
+        <single>false</single>
+        <answernumbering>123</answernumbering>
+    </question>

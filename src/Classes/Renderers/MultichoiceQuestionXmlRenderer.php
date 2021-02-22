@@ -18,9 +18,10 @@ class MultichoiceQuestionXmlRenderer extends QuestionXmlRenderer implements IRen
     {
         $data = [
             'questionNum' => $this->numberOfQuestion,
+            'questionType' => $this->question->getType(),
             'questionText' => $this->question->getText(),
             'fraction' => 100 / count($this->question->getAnswers()),
-            'answerVariants' => $this->question->getAnswerVariants(),
+            'answersVariants' => $this->question->getAnswerVariants(),
             'answers' => $this->question->getAnswers()
         ];
         $template = $this->twig->load('Multichoice.xml');

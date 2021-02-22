@@ -1,4 +1,57 @@
 #!/usr/bin/env php
 <?php
 
+use DI\ContainerBuilder;
+use PQMTool\Classes\Parsers\QuestionDataFileParser;
+
 require __DIR__ . '/../vendor/autoload.php';
+
+$inputFile = $argv[1];
+$outputFile = $argv[2];
+
+// Array with questions objects
+$questions = [];
+
+// Get question data from file
+$questionDataFileParser = new QuestionDataFileParser();
+$questionData = $questionDataFileParser->parse($inputFile);
+
+// Instantiate container
+$containerBuilder = new ContainerBuilder();
+
+// Set up dependencies
+$dependencies = require __DIR__ . '/../src/App/dependencies.php';
+$dependencies($containerBuilder);
+
+// Set up settings
+$settings = require __DIR__ . '/../src/App/settings.php';
+$settings($containerBuilder);
+
+// Build PHP-DI Container instance
+$container = $containerBuilder->build();
+
+// Get question object and add it to $questions
+foreach ($questionData as $data) {
+    $questionType = $data->getQuestionType();
+    $questions[] = $container->make($questionType, ['data' => $data]);
+}
+
+// Render questions
+$output = '';
+$questionNumber = 1;
+
+foreach ($questions as $question) {
+    $questionType = $question->getType();
+    $renderer = $container->make($questionType . '_renderer',
+        ['question' => $question,
+            'numberOfQuestion' => $questionNumber,
+            'templatesPath' => $container->get('templates_path')]);
+    $output .= $renderer->render() . "\n";
+    $questionNumber++;
+}
+
+$quizRenderer = $container->make('quiz_renderer',
+        ['questions' => $output,
+            'templatesPath' => $container->get('templates_path')]);
+
+$output = $quizRenderer->render();

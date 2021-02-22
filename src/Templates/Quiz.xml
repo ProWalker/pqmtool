@@ -6,4 +6,5 @@
             <text>__{{ questionCategory }}__</text>
         </category>
     </question>
+    {{~ questions -}}
 </quiz>

@@ -1,5 +1,7 @@
 # Tool for convert questions for LMS Moodle from text to xml format.
 
+This tool allows create special formatted file with questions for import to LMS moodle. 
+
 ## Install:
     composer require pqmtool/pqmtool
 ## How to use:
@@ -21,12 +23,5 @@ At this moment this tool supports the following questions:<br/>
 
 **Note:** You can list the answers separated by commas.
 
-### Code example for app.php file:
-    $file = $argv[1];
-    $fileToArray = parseFileToArray($file);
-    $tool = new PQMTool();
-    $questions = $tool->parseQuestions($fileToArray);
-
-**In cli:**<br/>
-
-    php app.php example.txt
+### Usage (CLI in project directory):
+    vendor/bin/pqmtool input_file.txt output_file.xml
