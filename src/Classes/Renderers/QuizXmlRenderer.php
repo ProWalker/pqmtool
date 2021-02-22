@@ -33,6 +33,7 @@ class QuizXmlRenderer implements IRenderer
     public function render(): string
     {
         $data = [
+            'questionCategory' => 'Default',
             'questions' => $this->questions,
         ];
         $template = $this->twig->load('Quiz.xml');

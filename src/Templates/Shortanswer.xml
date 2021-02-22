@@ -18,5 +18,5 @@
             <text></text>
           </feedback>
         </answer>
-        {% endfor %}
+        {%~ endfor %}
     </question>

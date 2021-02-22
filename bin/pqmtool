@@ -55,3 +55,5 @@ $quizRenderer = $container->make('quiz_renderer',
             'templatesPath' => $container->get('templates_path')]);
 
 $output = $quizRenderer->render();
+
+file_put_contents($outputFile, $output);
