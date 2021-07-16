@@ -16,20 +16,8 @@ function parseFileToArray($file): array
         throw new FileNotExistException();
     }
     $file = file_get_contents($file);
+    $file = mb_convert_encoding($file, 'UTF-8', 'Windows-1251');
     return explode("\n", $file);
-}
-
-// Unused
-function createQuestion(String $type): Question
-{
-    $question = 'PQMTool\Classes\\' . ucfirst($type) . 'Question';
-    return new $question;
-}
-
-function createQuestionBuilder(String $type, array $questionData)
-{
-    $builder = 'PQMTool\Classes\\' . ucfirst($type) . 'QuestionBuilder';
-    return new $builder($questionData['data'], $questionData['answer']);
 }
 
 function isAnswer(String $line): bool

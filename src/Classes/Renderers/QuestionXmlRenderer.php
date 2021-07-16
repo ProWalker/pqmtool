@@ -21,7 +21,7 @@ class QuestionXmlRenderer implements IRenderer
     {
         $this->loader = new \Twig\Loader\FilesystemLoader($templatesPath);
         $this->twig = new \Twig\Environment($this->loader, [
-            'cache' => $templatesPath . '/Cache/',
+           'cache' => $templatesPath . '/Cache/',
         ]);
         $this->question = $question;
         $this->numberOfQuestion = $numberOfQuestion;

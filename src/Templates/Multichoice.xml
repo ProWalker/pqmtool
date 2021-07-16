@@ -8,12 +8,15 @@
         </questiontext>
         {% for key, variant in answersVariants %}
         {%- if key not in answers %}
-            {%- set fraction = 0 -%}
-        {% endif -%}
+        <answer fraction="0">
+            <text><![CDATA[{{ variant }}]]></text>
+        </answer>
+        {% else %}
         <answer fraction="{{ fraction }}">
             <text><![CDATA[{{ variant }}]]></text>
         </answer>
-        {% endfor %}
+        {% endif -%}
+        {% endfor -%}
         <shuffleanswers>0</shuffleanswers>
         <single>false</single>
         <answernumbering>123</answernumbering>

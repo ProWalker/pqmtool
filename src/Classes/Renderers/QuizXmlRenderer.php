@@ -18,7 +18,7 @@ class QuizXmlRenderer implements IRenderer
     {
         $this->loader = new FilesystemLoader($templatesPath);
         $this->twig = new Environment($this->loader, [
-            'cache' => $templatesPath . '/Cache/',
+           'cache' => $templatesPath . '/Cache/',
             'autoescape' => false
         ]);
         $this->questions = $questions;
